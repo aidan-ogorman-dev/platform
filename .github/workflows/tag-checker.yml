@@ -25,6 +25,8 @@ jobs:
           echo "${{ steps.abc.outputs.modified }}"
           echo "Added+Modified:"
           echo "${{ steps.abc.outputs.added_modified }}"
-      - name: Hello world action step
+      - name: 
         id: hello
         uses: aidan-ogorman-dev/hello-world-action@v2
+        env:
+          FILES_CHANGED: ${{ steps.abc.outputs.added_modified }}
