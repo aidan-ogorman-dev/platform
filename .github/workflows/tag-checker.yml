@@ -29,4 +29,4 @@ jobs:
         id: hello
         uses: aidan-ogorman-dev/hello-world-action@v2
         env:
-          FILES_CHANGED: ${{ steps.abc.outputs.added_modified }}
+          FILES_CHANGED: ${{ steps.abc.outputs.all }}
