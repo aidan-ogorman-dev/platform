@@ -5,6 +5,12 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to say hello
     steps:
+      - name: Checkout code
+        id: checkout
+        uses: actions/checkout@v3
+      - name: List files
+        id: ls
+        run: ls -lrth
       - name: Hello world action step
         id: hello
         uses: aidan-ogorman-dev/hello-world-action@v2
