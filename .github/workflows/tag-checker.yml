@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to say hello
     steps:
-      - uses: actions/checkout@v2.1.0
+      - uses: actions/checkout@v3
       - uses: jitterbit/get-changed-files@v1
         id: abc
         with:
@@ -26,7 +26,8 @@ jobs:
           echo "Added+Modified:"
           echo "${{ steps.abc.outputs.added_modified }}"
       - name: 
-        id: hello
+        id: checker
+        uses: actions/checkout@v3
         uses: aidan-ogorman-dev/hello-world-action@v2
         env:
           FILES_CHANGED: ${{ steps.abc.outputs.all }}
