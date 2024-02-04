@@ -1,9 +1,9 @@
 name: PR commenter
 on: push
 jobs:
-  hello-world:
+  platform-bot:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: platform-bot label check
     steps:
       - uses: actions/checkout@v3
       - uses: jitterbit/get-changed-files@v1
@@ -18,7 +18,10 @@ jobs:
           REPO_FILES: ${{ steps.abc.outputs.all }}
       - name: Commit changes
         run: |
+          ls -lrth
+          ls -lrth /github/workspace
+          cp -r /github/workspace/* .
           git config --global user.name 'platform-bot'
           git config --global user.email 'platform-bot@users.noreply.github.com'
-          git commit -am "Ensuring required labels"
+          git commit -am ":robot: platform-bot CI :robot:]"
           git push
