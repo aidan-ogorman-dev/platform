@@ -16,3 +16,9 @@ jobs:
         uses: aidan-ogorman-dev/hello-world-action@v2
         env:
           REPO_FILES: ${{ steps.abc.outputs.all }}
+      - name: Commit changes
+        run: |
+          git config --global user.name 'platform-bot'
+          git config --global user.email 'platform-bot@users.noreply.github.com'
+          git commit -am "Ensuring required labels"
+          git push
