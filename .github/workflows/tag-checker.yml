@@ -19,8 +19,7 @@ jobs:
       - name: Commit changes
         run: |
           ls -lrth
-          ls -lrth /github/workspace
-          cp -r /github/workspace/* .
+          ls -lrth $GITHUB_WORKSPACE
           git config --global user.name 'platform-bot'
           git config --global user.email 'platform-bot@users.noreply.github.com'
           git commit -am ":robot: platform-bot CI :robot:]"
