@@ -18,9 +18,8 @@ jobs:
           REPO_FILES: ${{ steps.abc.outputs.all }}
       - name: Commit changes
         run: |
-          pwd | xargs echo
-          echo ${{GITHUB_WORKSPACE}}
-          cp -r ${{GITHUB_WORKSPACE}}/*" .
+          cat nginx-deploy-copy2.yml
+          cat $GITHUB_WORKSPACE/nginx-deploy-copy2.yml
           git config --global user.name 'platform-bot'
           git config --global user.email 'platform-bot@users.noreply.github.com'
           git commit -am ":robot: platform-bot CI :robot:]"
