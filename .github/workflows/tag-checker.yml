@@ -13,7 +13,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: 
         id: label_checker
-        uses: aidan-ogorman-dev/platform-label-checker@v1
+        uses: aidan-ogorman-dev/platform-label-checker@v2
         env:
           REPO_FILES: ${{ steps.changed_files.outputs.added_modified }}
       - name: Commit changes
