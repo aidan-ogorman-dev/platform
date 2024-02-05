@@ -15,7 +15,8 @@ jobs:
         id: label_checker
         uses: aidan-ogorman-dev/platform-label-checker@v2
         env:
-          REPO_FILES: ${{ steps.changed_files.outputs.added_modified }}
+          ADDED_MODIFIED_FILES: ${{ steps.changed_files.outputs.added_modified }}
+          RENAMED_FILES: : ${{ steps.changed_files.outputs.renamed }}
       - name: Commit changes
         run: |
           git config --global user.name 'platform-bot'
