@@ -4,6 +4,7 @@ metadata:
   creationTimestamp: null
   labels:
     app: my-nginx-deployment
+    owner: platform
   name: my-nginx-deployment
 spec:
   replicas: 1
