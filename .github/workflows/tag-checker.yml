@@ -3,27 +3,22 @@ on: push
 jobs:
   platform-bot:
     runs-on: ubuntu-latest
-    name: platform-bot label check
+    name: platformBot label checker
     steps:
       - uses: actions/checkout@v3
       - uses: jitterbit/get-changed-files@v1
-        id: abc
+        id: changed_files
         with:
           format: space-delimited
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: 
-        id: checker
-        uses: aidan-ogorman-dev/hello-world-action@v2
+        id: label_checker
+        uses: aidan-ogorman-dev/platform-label-checker@v1
         env:
-          REPO_FILES: ${{ steps.abc.outputs.all }}
+          REPO_FILES: ${{ steps.changed_files.outputs.added_modified }}
       - name: Commit changes
         run: |
-          pwd
-          ls -lrth
-          echo ${{ github.workspace }}
-          ls -lrth ${{ github.workspace }}
-          cat ${{ github.workspace }}/nginx-deploy-copy-2.yml
           git config --global user.name 'platform-bot'
           git config --global user.email 'platform-bot@users.noreply.github.com'
-          git commit -am ":robot: platform-bot CI :robot:]"
+          git commit -am ":robot: platform-bot CI :robot:"
           git push
