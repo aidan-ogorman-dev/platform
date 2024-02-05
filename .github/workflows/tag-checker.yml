@@ -20,5 +20,9 @@ jobs:
         run: |
           git config --global user.name 'platform-bot'
           git config --global user.email 'platform-bot@users.noreply.github.com'
-          git commit -am ":robot: platform-bot CI :robot:"
-          git push
+          if [ -n "$(git status --porcelain)" ]; then
+            git commit -am ":robot: platform-bot CI :robot:"
+            git push
+          else
+            echo "no changes to commit!";
+          fi
