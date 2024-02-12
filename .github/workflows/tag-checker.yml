@@ -1,9 +1,8 @@
 name: Check and Update Labels
 on: 
-  push:
+  pull_request:
     paths-ignore:
     - 'README.md'
-    - '.github/**'
 jobs:
   platform-bot:
     runs-on: ubuntu-latest
@@ -26,6 +25,10 @@ jobs:
         git config --global user.name 'platform-bot'
         git config --global user.email 'platform-bot@users.noreply.github.com'
         if [ -n "$(git status --porcelain)" ]; then
+          git stash
+          git fetch --all
+          git checkout origin/${{ github.head_ref }} -b ${{ github.head_ref }}
+          git stash apply
           git commit -am ":robot: platform-bot CI :robot:"
           git push
         else
