@@ -27,7 +27,7 @@ jobs:
         if [ -n "$(git status --porcelain)" ]; then
           git checkout -b ${{ github.head_ref }}
           git commit -am ":robot: platform-bot CI :robot:"
-          git push
+          git push --set-upstream origin ${{ github.head_ref }}
         else
           echo "no changes to commit!";
         fi
