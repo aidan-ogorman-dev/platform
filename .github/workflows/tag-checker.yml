@@ -1,6 +1,6 @@
 name: Check and Update Labels
 on: 
-  push:
+  pull-request:
     paths-ignore:
     - 'README.md'
     - '.github/**'
