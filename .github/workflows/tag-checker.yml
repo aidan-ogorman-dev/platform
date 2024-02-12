@@ -1,9 +1,8 @@
 name: Check and Update Labels
 on: 
-  pull-request:
+  pull_request:
     paths-ignore:
     - 'README.md'
-    - '.github/**'
 jobs:
   platform-bot:
     runs-on: ubuntu-latest
