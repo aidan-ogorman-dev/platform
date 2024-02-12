@@ -1,32 +1,33 @@
 name: PR commenter
-on: push
-  paths-ignore:
-    - "README.md"
-    - ".github/**"
-  jobs:
-    platform-bot:
-      runs-on: ubuntu-latest
-      name: platformBot label checker
-      steps:
-        - uses: actions/checkout@v3
-        - uses: jitterbit/get-changed-files@v1
-          id: changed_files
-          with:
-            format: space-delimited
-            token: ${{ secrets.GITHUB_TOKEN }}
-        - name: 
-          id: label_checker
-          uses: aidan-ogorman-dev/platform-label-checker@v3
-          env:
-            ADDED_MODIFIED_FILES: ${{ steps.changed_files.outputs.added_modified }}
-            RENAMED_FILES: ${{ steps.changed_files.outputs.renamed }}
-        - name: Commit changes
-          run: |
-            git config --global user.name 'platform-bot'
-            git config --global user.email 'platform-bot@users.noreply.github.com'
-            if [ -n "$(git status --porcelain)" ]; then
-              git commit -am ":robot: platform-bot CI :robot:"
-              git push
-            else
-              echo "no changes to commit!";
-            fi
+on: 
+  push:
+    paths-ignore:
+      - 'README.md'
+      - '.github/**'
+jobs:
+  platform-bot:
+    runs-on: ubuntu-latest
+    name: platformBot label checker
+    steps:
+      - uses: actions/checkout@v3
+      - uses: jitterbit/get-changed-files@v1
+        id: changed_files
+        with:
+          format: space-delimited
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: 
+        id: label_checker
+        uses: aidan-ogorman-dev/platform-label-checker@v3
+        env:
+          ADDED_MODIFIED_FILES: ${{ steps.changed_files.outputs.added_modified }}
+          RENAMED_FILES: ${{ steps.changed_files.outputs.renamed }}
+      - name: Commit changes
+        run: |
+          git config --global user.name 'platform-bot'
+          git config --global user.email 'platform-bot@users.noreply.github.com'
+          if [ -n "$(git status --porcelain)" ]; then
+            git commit -am ":robot: platform-bot CI :robot:"
+            git push
+          else
+            echo "no changes to commit!";
+          fi
