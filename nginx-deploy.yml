@@ -10,7 +10,6 @@ spec:
   selector:
     matchLabels:
       app: my-nginx-deployment
-  strategy: {}
   template:
     metadata:
       creationTimestamp: null
