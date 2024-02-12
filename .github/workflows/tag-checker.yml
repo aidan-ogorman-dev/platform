@@ -25,6 +25,7 @@ jobs:
         git config --global user.name 'platform-bot'
         git config --global user.email 'platform-bot@users.noreply.github.com'
         if [ -n "$(git status --porcelain)" ]; then
+          git checkout -b ${{ github.head_ref }}
           git commit -am ":robot: platform-bot CI :robot:"
           git push
         else
