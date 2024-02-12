@@ -4,12 +4,14 @@ metadata:
   creationTimestamp: null
   labels:
     app: my-nginx-deployment
+    owner: platform
   name: my-nginx-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: my-nginx-deployment
+  strategy: {}
   template:
     metadata:
       creationTimestamp: null
@@ -20,3 +22,4 @@ spec:
       - image: nginx
         name: nginx
         resources: {}
+status: {}
